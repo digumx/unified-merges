@@ -11,13 +11,21 @@ conda env remove --name unified-merge
 conda env create -f env.yaml
 ```
 
+Create two directories `outs` and `stats` for storing logs and statistics files.
+
+Follow instructions from the NeuralSat repository to install NeuralSat
 
 
 # Running:
 
 ## Running All Experiments:
 
-Use the script `batch_run_verif.py`. 
+Use the script `batch_run_verif.py`. Pass in `-m ours` to run experiments using
+our method, and `-m baseline` for baseline experiments. There are several other
+options available, see `--help`.
+
+Once the run is complete, the `write_res_to_excel.py` script can be used to
+generate an excel spreadsheet summarizing the data from the run.
 
 ## Running a Single Experiment:
 

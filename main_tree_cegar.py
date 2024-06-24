@@ -291,8 +291,6 @@ def abs_refine_loop( net, inp_bnds, out_ub,
                 os.system("rm chopped_dump_net.onnx")
                 os.system("rm res.txt")
 
-                
-              
 
 
 

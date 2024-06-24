@@ -1,5 +1,6 @@
 *build/*
-*out/*
+outs/*
+stats/*
 *.out*
 *cache/*
 *catche/*
@@ -8,3 +9,5 @@
 *.log*
 *log/*
 *venv/*
+*.npz
+*.xlsx

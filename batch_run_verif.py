@@ -69,33 +69,49 @@ def run_per_cpu( fargs ):
 if __name__ == '__main__':
 
     # Set number of cpus, and timeout here
-    timeout = 200
-    n_cpu =  1
 
     parser = argparse.ArgumentParser()
 
+    parser.add_argument('-t', '--timeout',
+        dest='timeout',
+        required=False,
+        type=int,
+        default=200,
+        help="The timeout for each instance"
+    )
+    parser.add_argument('-c', '--n-cpu',
+        dest='n_cpu',
+        required=False,
+        type=int,
+        default=6,
+        help="The number of parallel cpus to use"
+    )
     parser.add_argument('-n', '--network',
         dest='net_path',
-        required=True,
+        required=False,
         type=str,
-        help="The network path"
+        default="networks/acasxu/", 
+        help="The networks folder path",
     )
     parser.add_argument('-p', '--property',
         dest='prop_path',
-        required=True,
+        required=False,
         type=str,
-        help="The the property path"
+        default="properties/acasxu_prop/", 
+        help="The the propertys folder path"
     )
     parser.add_argument('-o', '--outs_path',
         dest='outs_path',
-        required=True,
+        required=False,
         type=str,
+        default="outs/",
         help="The the outs path"
     )
     parser.add_argument('-s', '--stats_path',
         dest='stats_path',
-        required=True,
+        required=False,
         type=str,
+        default="stats/",
         help="The the stats path"
     )
     parser.add_argument('-m', '--mode',
@@ -113,11 +129,15 @@ if __name__ == '__main__':
         file_to_run = 'main_tree_cegar.py'
     elif args.mode == 'baseline':
         file_to_run = 'main_cegar.py'
+    else:
+        raise NotImplementedError( "Unknown mode {}".format( args.mode ))
 
     net_path =  args.net_path
     prop_path = args.prop_path
     outs_path = args.outs_path
     stats_path = args.stats_path
+    timeout = args.timeout
+    n_cpu =  args.n_cpu
     # Collect names for all networks
     netnames = [ 
         n for n in os.listdir( net_path ) 
@@ -134,7 +154,7 @@ if __name__ == '__main__':
     choice = 3
 
     # Collect configurations
-    if choice==1:
+    if args.mode == 'ours':
         confs = [
                 {
                     'abs_mth' : 'saturation',  
@@ -144,7 +164,7 @@ if __name__ == '__main__':
                 }, 
 
         ]
-    elif choice==2:
+    elif args.mode == 'baseline':
         confs = [
                 {
                     'abs_mth' : 'saturation',  
@@ -155,15 +175,7 @@ if __name__ == '__main__':
 
         ]
     else:
-        confs = [
-                {
-                    'abs_mth' : 'none',  
-                    'ref_mth' : 'cegar', 
-                    'cl_vecs' : 'simulation',
-                    '--solver-type': 'neuralsat'
-                }, 
-
-        ]
+        raise NotImplementedError( "Unknown mode {}".format( args.mode ))
 
     tasks = itertools.product(netnames, properties, confs)
 
