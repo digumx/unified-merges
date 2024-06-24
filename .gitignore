@@ -1,0 +1,10 @@
+*build/*
+*out/*
+*.out*
+*cache/*
+*catche/*
+*data/*
+*.data*
+*.log*
+*log/*
+*venv/*

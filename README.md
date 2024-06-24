@@ -3,6 +3,16 @@ paper "Unifying Syntactic and Semantic Abstractions for Deep Neural Networks".
 
 # Installation Instructions:
 
+Clone the repository and update all submodules. Then, create a new conda
+environment via:
+
+```
+conda env remove --name unified-merge
+conda env create -f env.yaml
+```
+
+
+
 # Running:
 
 ## Running All Experiments:
