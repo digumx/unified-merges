@@ -10,11 +10,9 @@ environment via:
 conda env remove --name unified-merge
 conda env create -f env.yaml
 ```
+Then follow instructions from the NeuralSat repository to install NeuralSat
 
 Create two directories `outs` and `stats` for storing logs and statistics files.
-
-Follow instructions from the NeuralSat repository to install NeuralSat
-
 
 # Running:
 
@@ -36,3 +34,5 @@ format of these files are the string representation of the dicts specified in
 `encode_property` in `property.py`.
 
 # Results:
+
+The results presented in the paper are found in `results/acasxu.xlsx`.
