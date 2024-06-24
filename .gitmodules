@@ -1,0 +1,3 @@
+[submodule "neuralsat"]
+	path = neuralsat
+	url = git@github.com:dynaroars/neuralsat.git
