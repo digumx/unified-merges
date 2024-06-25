@@ -11,3 +11,8 @@ stats/*
 *venv/*
 *.npz
 *.xlsx
+__pycache__/
+a.txt
+chopped_dump_net.onnx
+custom_vnnlib.vnnlib
+output.xlsx
